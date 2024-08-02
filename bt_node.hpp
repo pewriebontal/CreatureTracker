@@ -1,68 +1,78 @@
 #include "bt_node.h"
 
+#pragma region Constructor
 template <typename T>
 BTNode<T>::BTNode()
 {
-    data = T();
-    left = nullptr;
-    right = nullptr;
+	data = T();
+	left = nullptr;
+	right = nullptr;
 }
 
 template <typename T>
-BTNode<T>::BTNode(const T &new_data)
+BTNode<T>::BTNode(const T& new_data)
 {
-    data = new_data;
-    left = nullptr;
-    right = nullptr;
+	data = new_data;
+	left = nullptr;
+	right = nullptr;
 }
 
 template <typename T>
 BTNode<T>::~BTNode()
 {
-    data = nullptr;
-    left = nullptr;
-    right = nullptr;
+	data = T();
+	left = nullptr;
+	right = nullptr;
+}
+
+#pragma endregion
+
+#pragma region Accessors and Mutators
+
+template <typename T>
+void BTNode<T>::set_data(const T& new_data)
+{
+	data = new_data;
 }
 
 template <typename T>
-void BTNode<T>::set_data(const T &new_data)
+void BTNode<T>::set_left(BTNode<T>* new_left)
 {
-    data = new_data;
+	left = new_left;
 }
 
 template <typename T>
-void BTNode<T>::set_left(BTNode<T> *new_left)
+void BTNode<T>::set_right(BTNode<T>* new_right)
 {
-    left = new_left;
+	right = new_right;
 }
 
 template <typename T>
-void BTNode<T>::set_right(BTNode<T> *new_right)
+T& BTNode<T>::get_data()
 {
-    right = new_right;
+	return (data);
 }
 
 template <typename T>
-T &BTNode<T>::get_data()
+BTNode<T>* BTNode<T>::get_left() const
 {
-    return data;
+	return (left);
 }
 
 template <typename T>
-BTNode<T> *BTNode<T>::get_left() const
+BTNode<T>* BTNode<T>::get_right() const
 {
-    return left;
+	return (right);
 }
 
+#pragma endregion
+#pragma region Operator Overloads
+
 template <typename T>
-BTNode<T> *BTNode<T>::get_right() const
+std::ostream& operator<<(std::ostream& out, const BTNode<T>& node)
 {
-    return right;
+	out << node.get_data();
+	return (out);
 }
 
-//////////////////////////////overloaded operator///////////////////////////////
-template <typename T>
-std::ostream &operator<<(std::ostream &out, const BTNode<T> &node)
-{
-    // TODO: Implement this function
-}
+#pragma endregion
